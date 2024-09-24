@@ -1,0 +1,35 @@
+{
+  "basic": {
+    "input_dataset_filename": "training_dataset.npy",
+    "input_model_filename": "model.h5",
+    "output_metrics_variable": "ret",
+    "output_metrics_type": "accuracy"
+  },
+
+  "advanced": {
+    "download_evaluation_files": {
+      "set_cpu_request": 0.5,
+      "set_cpu_limit": 0.5,
+      "set_memory_request": "4000Mi",
+      "set_memory_limit": "4000Mi",
+      "set_caching_options": false,
+      "set_image_pull_policy": "Always"
+    },
+    "evaluation": {
+      "set_cpu_request": 0.5,
+      "set_cpu_limit": 0.5,
+      "set_memory_request": "4000Mi",
+      "set_memory_limit": "4000Mi",
+      "set_caching_options": false,
+      "set_image_pull_policy": "Always"
+    },
+    "upload_metrics": {
+      "set_cpu_request": 0.5,
+      "set_cpu_limit": 0.5,
+      "set_memory_request": "4000Mi",
+      "set_memory_limit": "4000Mi",
+      "set_caching_options": false,
+      "set_image_pull_policy": "Always"
+    }
+  }
+}
