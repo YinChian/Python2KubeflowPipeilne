@@ -20,7 +20,6 @@ def main():
         print(f"Error: An I/O error occurred. {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-
     fill_template(data)
 
 def fill_template(values):

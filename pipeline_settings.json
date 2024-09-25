@@ -8,6 +8,8 @@
 
   "advanced": {
     "download_evaluation_files": {
+      "set_ephemeral_storage_request": "1Gi",
+      "set_ephemeral_storage_limit": "2Gi",
       "set_cpu_request": 0.5,
       "set_cpu_limit": 0.5,
       "set_memory_request": "4000Mi",
@@ -16,6 +18,8 @@
       "set_image_pull_policy": "Always"
     },
     "evaluation": {
+      "set_ephemeral_storage_request": "1Gi",
+      "set_ephemeral_storage_limit": "2Gi",
       "set_cpu_request": 0.5,
       "set_cpu_limit": 0.5,
       "set_memory_request": "4000Mi",
@@ -24,6 +28,8 @@
       "set_image_pull_policy": "Always"
     },
     "upload_metrics": {
+      "set_ephemeral_storage_request": "1Gi",
+      "set_ephemeral_storage_limit": "2Gi",
       "set_cpu_request": 0.5,
       "set_cpu_limit": 0.5,
       "set_memory_request": "4000Mi",
