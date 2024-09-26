@@ -129,45 +129,44 @@ def pipeline(evaluation_task_uid: str, evaluation_dataset_path: str, model_uid: 
                                          port=port,
                                          access_key=access_key,
                                          secret_key=secret_key)
-    task1.set_cpu_request('{{ pipeline_settings.advanced.download_evaluation_files.set_cpu_request }}')\
-        .set_cpu_limit('{{ pipeline_settings.advanced.download_evaluation_files.set_cpu_limit }}')
-    task1.set_memory_request('{{ pipeline_settings.advanced.download_evaluation_files.set_memory_request }}') \
-        .set_memory_limit('{{ pipeline_settings.advanced.download_evaluation_files.set_memory_limit }}')
+
+    task1.set_cpu_request('0.5') \
+        .set_cpu_limit('0.5')
+    task1.set_memory_request('4000Mi') \
+        .set_memory_limit('4000Mi')
     task1.set_ephemeral_storage_request(
-        '{{ pipeline_settings.advanced.download_evaluation_files.set_ephemeral_storage_request }}') \
+        '1Gi') \
         .set_ephemeral_storage_limit(
-        '{{ pipeline_settings.advanced.download_evaluation_files.set_ephemeral_storage_limit }}')
-    task1.set_caching_options({{ pipeline_settings.advanced.download_evaluation_files.set_caching_options }})
-    task1.set_image_pull_policy('{{ pipeline_settings.advanced.download_evaluation_files.set_image_pull_policy }}')
+        '2Gi')
+    task1.set_caching_options(False)
+    task1.set_image_pull_policy('Always')
     task1.add_pod_label(evaluation_task_uid, 'download_evaluation_files')
 
-
     task2 = retrain_op(input=task1.output)
-    task2.set_cpu_request('{{ pipeline_settings.advanced.evaluation.set_cpu_request }}') \
-        .set_cpu_limit('{{ pipeline_settings.advanced.evaluation.set_cpu_limit }}')
-    task2.set_memory_request('{{ pipeline_settings.advanced.evaluation.set_memory_request }}') \
-        .set_memory_limit('{{ pipeline_settings.advanced.evaluation.set_memory_limit }}')
+    task2.set_cpu_request('0.5') \
+        .set_cpu_limit('0.5')
+    task2.set_memory_request('4000Mi') \
+        .set_memory_limit('4000Mi')
     task2.set_ephemeral_storage_request(
-        '{{ pipeline_settings.advanced.evaluation.set_ephemeral_storage_request }}') \
+        '1Gi') \
         .set_ephemeral_storage_limit(
-        '{{ pipeline_settings.advanced.evaluation.set_ephemeral_storage_limit }}')
-    task2.set_caching_options({{pipeline_settings.advanced.evaluation.set_caching_options}})
-    task2.set_image_pull_policy('{{ pipeline_settings.advanced.evaluation.set_image_pull_policy }}')
+        '2Gi')
+    task2.set_caching_options(False)
+    task2.set_image_pull_policy('Always')
     task2.add_pod_label(evaluation_task_uid, 'evaluation')
-
 
     task3 = upload_model_op(input=task2.output, model_uid=model_uid,
                             host=host, port=port, access_key=access_key, secret_key=secret_key)
-    task3.set_cpu_request('{{ pipeline_settings.advanced.upload_metrics.set_cpu_request }}') \
-        .set_cpu_limit('{{ pipeline_settings.advanced.upload_metrics.set_cpu_limit }}')
-    task3.set_memory_request('{{ pipeline_settings.advanced.upload_metrics.set_memory_request }}') \
-        .set_memory_limit('{{ pipeline_settings.advanced.upload_metrics.set_memory_limit }}')
+    task3.set_cpu_request('0.5') \
+        .set_cpu_limit('0.5')
+    task3.set_memory_request('4000Mi') \
+        .set_memory_limit('4000Mi')
     task3.set_ephemeral_storage_request(
-        '{{ pipeline_settings.advanced.upload_metrics.set_ephemeral_storage_request }}') \
+        '1Gi') \
         .set_ephemeral_storage_limit(
-        '{{ pipeline_settings.advanced.upload_metrics.set_ephemeral_storage_limit }}')
-    task3.set_caching_options({{pipeline_settings.advanced.upload_metrics.set_caching_options}})
-    task3.set_image_pull_policy('{{ pipeline_settings.advanced.upload_metrics.set_image_pull_policy }}')
+        '2Gi')
+    task3.set_caching_options(False)
+    task3.set_image_pull_policy('Always')
     task3.add_pod_label(evaluation_task_uid, 'upload_metrics')
 
 

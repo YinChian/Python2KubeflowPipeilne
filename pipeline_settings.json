@@ -5,37 +5,14 @@
     "output_metrics_variable": "ret",
     "output_metrics_type": "accuracy"
   },
-
-  "advanced": {
-    "download_evaluation_files": {
-      "set_ephemeral_storage_request": "1Gi",
-      "set_ephemeral_storage_limit": "2Gi",
-      "set_cpu_request": 0.5,
-      "set_cpu_limit": 0.5,
-      "set_memory_request": "4000Mi",
-      "set_memory_limit": "4000Mi",
-      "set_caching_options": false,
-      "set_image_pull_policy": "Always"
+  "pip_packages": [
+    {
+      "name": "tensorflow",
+      "version": "2.15.0"
     },
-    "evaluation": {
-      "set_ephemeral_storage_request": "1Gi",
-      "set_ephemeral_storage_limit": "2Gi",
-      "set_cpu_request": 0.5,
-      "set_cpu_limit": 0.5,
-      "set_memory_request": "4000Mi",
-      "set_memory_limit": "4000Mi",
-      "set_caching_options": false,
-      "set_image_pull_policy": "Always"
-    },
-    "upload_metrics": {
-      "set_ephemeral_storage_request": "1Gi",
-      "set_ephemeral_storage_limit": "2Gi",
-      "set_cpu_request": 0.5,
-      "set_cpu_limit": 0.5,
-      "set_memory_request": "4000Mi",
-      "set_memory_limit": "4000Mi",
-      "set_caching_options": false,
-      "set_image_pull_policy": "Always"
+    {
+      "name": "scikit-learn",
+      "version": "1.5.2"
     }
-  }
+  ]
 }

@@ -1,4 +1,6 @@
-FROM tensorflow/tensorflow:2.15.0-gpu
+FROM python:3.11.1
 RUN apt-get update && apt-get install -y git
 RUN pip install --no-cache-dir git+https://github.com/mitlab-6g-team/mitlab-aiml-tools.git@8e57858e3183198edb971b3c6bfeff3f2426651f
-RUN pip install --no-cache-dir scikit-learn
+{%- for package in pipeline_settings.pip_packages %}
+RUN pip install --no-cache-dir {{ package.name }}=={{ package.version }}
+{%- endfor %}

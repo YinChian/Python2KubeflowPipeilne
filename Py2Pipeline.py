@@ -20,13 +20,17 @@ def main():
         print(f"Error: An I/O error occurred. {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-    fill_template(data)
 
-def fill_template(values):
+    fill_evaluation_python_template(data)
+    fill_evaluation_dockerfile_template(data)
+
+
+
+def fill_evaluation_python_template(values):
     env = Environment(
         loader=FileSystemLoader(os.path.join(script_dir, 'Template'))
     )
-    template= env.get_template('CodeTemplate.py')
+    template= env.get_template('CodeTemplate.py.jinja')
 
     with open('Evaluation.py') as f:
         user_code = f.read()
@@ -41,8 +45,19 @@ def fill_template(values):
     else:
         raise Exception('User import start mark count != 1')
 
-    with open('./Output/pipeline.py', 'w') as f:
+    with open('./Output/pipeline.py', 'w+') as f:
         f.write(ret)
+
+
+def fill_evaluation_dockerfile_template(values):
+    env = Environment(
+        loader=FileSystemLoader(os.path.join(script_dir, 'Template'))
+    )
+    template= env.get_template('evaluation.jinja')
+    with open('./Output/evaluation', 'w+') as f:
+        ret = template.render(pipeline_settings=values)
+        f.write(ret)
+
 
 if __name__ == '__main__':
     main()
